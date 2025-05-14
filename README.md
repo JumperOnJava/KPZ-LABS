@@ -37,3 +37,5 @@ Creation of `Authenticator` is deferred to first call of `getInstance` method<br
 
 `HeroBuilder` and `EnemyBuilder` implement `CharacterBuilder` with different way of passing data to result character;<br>
 `Hero` and `Enemy` implement `Character` with different ways to store data;<br>
+
+<img src="Task5.png">
