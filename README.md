@@ -9,10 +9,14 @@ Each `PurchaseFlow` sublass has different logic for purchasing subscription.<br>
 `MobileApp` requires user to "click" on a screen to select subscription type and make photo of student document for student subscription<br>
 `ManagerCall` requires telling manager what subscription you want and specify student document id for student subscription<br>
 
+<img src="Task1.png">
+
 ### 2. Abstract factory
 
 Each `ManufacturerFactory` implementation can create all devices  <br>
 Manufacturer created devices will have different features and specs depeding on manufacturer specific extension of `Laptop` `Phone` and `Tablet`<br>
+
+<img src="Task2.png">
 
 ### 3. Singleton
 
