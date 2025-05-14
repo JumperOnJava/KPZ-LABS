@@ -1,91 +1,35 @@
-Here is the formatted description of the principles used in your Zoo Management System project, matching your example:
+# Lab 2
 
----
+## Patterns used in code
 
-# Zoo Management System
+### 1. Factory method
 
-## Principles Followed in the Code
+Each `PurchaseFlow` implementation has different logic for purchasing subscription.<br>
+`Website` accepts input stream (possibly from console) with user data<br>
+`MobileApp` requires user to "click" on a screen to select subscription type and make photo of student document for student subscription<br>
+`ManagerCall` requires telling manager what subscription you want and specify student document id for student subscription<br>
 
-### 1. DRY (Don't Repeat Yourself)
+### 2. Abstract factory
 
-**Example:**
+Each `ManufacturerFactory` implementation can create all devices  
+Manufacturer created devices will have different features and specs depeding on manufacturer specific extension of `Laptop` `Phone` and `Tablet`
 
-* The `GenericAnimal` class centralizes shared animal behavior (`eat`, `getName`, etc.), preventing repetitive logic in subclasses like `Lion`, `Dolphin`, and `Parrot`.
-* The `Feeder` interface provides a shared `FeedAnimal` method, avoiding duplicated feeding logic in both `ZooKeeper` and `ZooVisitor`.
+### 3. Singleton
 
-### 2. KISS (Keep It Simple, Stupid)
+Only one instance of `Authenticator` class can be created and used in all threads
+Constructor has private visibility ensure creation object can be only done in static methods of this class
+Constructor and `getInstance` method contain checks to ensure only one object can be created even in multithreaded environment
+Creation of `Authenticator` is deferred to first call of `getInstance` method
 
-**Example:**
+### 4. Prototype
 
-* Responsibilities are clearly split across classes: `ZooKeeper` feeds animals, `Director` orders food, `Warehouse` manages inventory.
-* The animal feeding process is straightforward: check diet > take food > log result.
+`Virus` implements method `duplicate` from `Prototype` interface
+`duplicated` method implementation copies all fields from original to new object, and recursively duplicates each child from childen list 
 
-### 3. SOLID Principles
+### 5. Builder
 
-#### **S - Single Responsibility Principle (SRP)**
+`Character` interface defines what any character can do
+`CharacterBuilder` interface defines how character is created
 
-**Example:**
-
-* `ZooKeeper` handles only zoo staff feeding logic.
-* `GenericWarehouse` manages only food storage and retrieval.
-* `Animal` classes focus only on animal-related behavior (like eating, sound).
-
-#### **O - Open/Closed Principle (OCP)**
-
-**Example:**
-
-* New animal types can be introduced by extending abstract animal classes `WaterAnimal`, `GroundAnimal`, `GenericAnimal` without altering existing classes.
-* `Enclosure` implementations (`Cage`, `Aquarium`) extend `GenericEnclosure` and override behavior as needed.
-
-#### **L - Liskov Substitution Principle (LSP)**
-
-**Example:**
-
-* `GroundAnimal` and `WaterAnimal` subclasses (like `Lion` or `Dolphin`) can be used wherever their respective parent types are expected without breaking functionality.
-* `ZooKeeper` and `ZooVisitor` both fulfill the `Feeder` contract properly.
-
-#### **I - Interface Segregation Principle (ISP)**
-
-**Example:**
-
-* `Animal` interface defines only animal-relevant methods (`getName`, `getDiet`, etc.).
-* `FoodProvider` abstracts only food distribution; it doesn’t burden implementers with unrelated methods.
-
-#### **D - Dependency Inversion Principle (DIP)**
-
-**Example:**
-
-* `Feeder` implementations depend on `FoodProvider` abstraction, not on concrete implementations like `GenericWarehouse` or `VisitorFoodShop`.
-* `Zoo` references `Warehouse` and `FoodProvider` interfaces for flexibility.
-
-### 4. YAGNI (You Ain't Gonna Need It)
-
-**Example:**
-
-* The `SmallFish` class leaves `makeSound()` empty rather than overengineering a placeholder behavior for soundless animals.
-* No extra behavior or systems are added unless directly required.
-
-### 5. Composition Over Inheritance
-
-**Example:**
-
-* `VisitorFoodShop` uses composition by containing a `FoodProvider` rather than extending one, allowing flexible delegation.
-* `Zoo` composes its systems (list of `Enclosure`, `Warehouse`, others) rather than extending these classes.
-
-### 6. Program to Interfaces, Not Implementations
-
-**Example:**
-
-* `Zoo`, `ZooKeeper`, and `Feeder` depend on `Animal`, `FoodProvider`, and `Warehouse` interfaces rather than concrete classes.
-* Allows easy creation of new implementations that may have different behaviour
-
-### 7. Fail Fast Principle
-
-**Example:**
-
-* `Warehouse` and `Enclosure` implementations throw `InsufficientResourcesException` immediately when constraints (e.g., volume, food amount) are violated.
-* Issues are reported as early as possible, making debugging easier and avoiding cascading failures.
-
----
-
-Would you like this exported as a Markdown file?
+`HeroBuilder` and `EnemyBuilder` implement `CharacterBuilder` with different way of passing data to result character;
+`Hero` and `Enemy` implement `Character` with different ways to store data;
