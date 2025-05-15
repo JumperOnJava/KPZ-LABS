@@ -2,40 +2,27 @@
 
 ## Patterns used in code
 
-### 1. Factory method
+### 1. Adapter
 
-Each `PurchaseFlow` sublass has different logic for purchasing subscription.<br>
-`Website` accepts input stream (possibly from console) with user data<br>
-`MobileApp` requires user to "click" on a screen to select subscription type and make photo of student document for student subscription<br>
-`ManagerCall` requires telling manager what subscription you want and specify student document id for student subscription<br>
+Class `OutpitLogger` adapts `OutputWriter` implementation to output using `Logger` interface. That allows to replace `ConsoleLogger` with `OutputLogger` to get logging to file functionality with reusing existing classes
 
-<img src="Task1.png">
+### 2. Decorator
 
-### 2. Abstract factory
+Each `GenericHero` subclass has different base stats and implements `Hero` interface. Items modify base stats of character by implementing `modifyXYZ` methods from `Equipment` abstract class that also implements `Hero` interface by wrapping existing `Hero` object and applying modifiers to it
 
-Each `ManufacturerFactory` implementation can create all devices  <br>
-Manufacturer created devices will have different features and specs depeding on manufacturer specific extension of `Laptop` `Phone` and `Tablet`<br>
+### 3. Bridge
 
-<img src="Task2.png">
+`Shape` subclasses take `Renderer` implementation as constructor parameter, and when `Shape.draw` method is called it "Draws" desired shape using `Renderer.render` method implementation
 
-### 3. Singleton
+### 4. Proxy
 
-Only one instance of `Authenticator` class can be created and used in all threads<br>
-Constructor has private visibility ensure creation object can be only done in static methods of this class<br>
-Constructor and `getInstance` method contain checks to ensure only one object can be created even in multithreaded environment<br>
-Creation of `Authenticator` is deferred to first call of `getInstance` method<br>
+`SmartTextReader` implement file opening, reading and closing trough `Reader` interface. `SmartTextChecker` wraps `Reader` implementation and logs all actions and errors. `SmartTextSecurity` also wraps `Reader` implementation to check what user accesses and throws an error when user reads system data
 
-### 4. Prototype
+### 5. Composite
 
-`Virus` implements method `duplicate` from `Prototype` interface<br>
-`duplicated` method implementation copies all fields from original to new object, and recursively duplicates each child from childen list <br>
+`LightNode` class defines `innerHTML` and `outerHTML` abstract methods. `LightTextNode` implements them as String, `LightElementNode` allows to store child `LightNode` objects in tags. When inner/outerHTML method implementation is called it returns recursively
 
-### 5. Builder
+### 6. Flyweight
 
-`Character` interface defines what any character can do<br>
-`CharacterBuilder` interface defines how character is created<br>
-
-`HeroBuilder` and `EnemyBuilder` implement `CharacterBuilder` with different way of passing data to result character;<br>
-`Hero` and `Enemy` implement `Character` with different ways to store data;<br>
-
-<img src="Task5.png">
+`LightNodeFactory` stores all references to used tags, so when passed node has same content as existing it is replaced by existing reference to save memory
+Note: create book.txt in 

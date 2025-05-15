@@ -1,26 +1,32 @@
 package org.example.task3;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import org.example.task3.renderer.RasterRenderer;
+import org.example.task3.renderer.Renderer;
+import org.example.task3.renderer.VectorRenderer;
+import org.example.task3.shape.Circle;
+import org.example.task3.shape.Shape;
+import org.example.task3.shape.Square;
+import org.example.task3.shape.Triangle;
+
+import java.util.List;
 
 public class Task3 {
-    static volatile AtomicInteger counter = new AtomicInteger(0);
     public static void Main() {
-        Runnable task = () -> {
-            Authenticator auth = Authenticator.getInstance();
-            System.out.println("Instance hash: " + auth.hashCode());
-            auth.login("admin", "12345");
-            counter.incrementAndGet();
-        };
+        Renderer raster = new RasterRenderer();
+        Renderer vector = new VectorRenderer();
 
-        Thread t1 = new Thread(task);
-        Thread t2 = new Thread(task);
-        Thread t3 = new Thread(task);
+        List.of(raster, vector).forEach(renderer ->
+        {
+            Shape circle = new Circle(renderer);
+            Shape square = new Square(renderer);
+            Shape triangle = new Triangle(renderer);
 
-        t1.start();
-        t2.start();
-        t3.start();
-
-        //await for finish
-        while (counter.get() != 3);
+            circle.draw();
+            square.draw();
+            triangle.draw();
+        });
     }
+
+
 }
+

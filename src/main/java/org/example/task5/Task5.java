@@ -2,35 +2,21 @@ package org.example.task5;
 
 public class Task5 {
     public static void Main() {
-        Hero hero = new Hero.HeroBuilder()
-                .name("John")
-                .power(100)
-                .reputation(10)
-                .action("Help people")
-                .action("Fight monsters")
-                .action("Defend village")
-                .build();
+        LightElementNode ul = new LightElementNode("ul");
+        ul.addClass("my-list");
 
+        LightElementNode li1 = new LightElementNode("li");
+        li1.addChild(new LightTextNode("element 1"));
 
-        hero.changeReputation(3);
-        hero.printInfo();
-        hero.doAction();
+        LightElementNode li2 = new LightElementNode("li");
+        li2.addChild(new LightTextNode("element 2"));
 
-        Enemy enemy = new Enemy.EnemyBuilder()
-                .name("Sean Kickerton 49th")
-                .power(99)
-                .reputation(-30)
-                .action("Steal money")
-                .action("Help monsters")
-                .action("Rob bank")
-                .action("Sell labs for money")
-                .build();
+        ul.addChild(li1);
+        ul.addChild(li2);
 
-
-        enemy.changeReputation(-2);
-        enemy.printInfo();
-        enemy.doAction();
-
-
+        System.out.println("=== outerHTML ===");
+        System.out.println(ul.outerHTML());
+        System.out.println("\n=== innerHTML ===");
+        System.out.println(ul.innerHTML());
     }
 }

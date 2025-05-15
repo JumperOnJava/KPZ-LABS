@@ -1,29 +1,31 @@
 package org.example.task4;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class Task4 {
     public static void Main() {
-        var old_virus = new Virus("Old virus", "lorem ipsum",20, 40);
-        var current_virus = old_virus.duplicate();
-        old_virus.children.add(current_virus);
+        var reader = new SmartTextReader();
+        reader.open("userdata/shared_data.txt");
+        var data = reader.read();
+        reader.close();
+        printdata(data);
 
-        current_virus.name = "Current virus";
-        current_virus.age = 20;
-        current_virus.weight = 16;
+        var logger_reader = new SmartTextChecker(new SmartTextReader());
+        logger_reader.open("userdata/shared_data.txt");
+        var logger_data = logger_reader.read();
+        logger_reader.close();
+        printdata(logger_data);
 
-        var new_virus = current_virus.duplicate();
-        current_virus.children.add(new_virus);
-
-        new_virus.name = "New virus";
-        new_virus.age = 10;
-        new_virus.weight = 10;
-        new_virus.species = "lorem ipsum dolor";
-
-        System.out.println("\nOriginal virus:\n");
-        old_virus.printVirusInfo();
-
-        System.out.println("\nDuplicated virus:\n");
-        old_virus.duplicate().printVirusInfo();
+        var security_reader = new SmartTextChecker(new SmartTextSecurity(new SmartTextReader()));
+        security_reader.open("system/passwords.txt");
+        var security_data = security_reader.read();
+        security_reader.close();
+        printdata(security_data);
+    }
+    static void printdata(List<List<Character>> data) {
+        data.forEach(data2-> {
+            data2.forEach(System.out::print);
+            System.out.println();
+        });
     }
 }

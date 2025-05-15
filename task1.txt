@@ -1,0 +1,4 @@
+[Starting logs at:1747321486318]
+[INFO] Printing logs
+[WARN] Printing warnings
+[ERR] Printing errors
