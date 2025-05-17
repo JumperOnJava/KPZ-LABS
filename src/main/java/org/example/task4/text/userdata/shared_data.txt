@@ -1,2 +1,0 @@
-message from user: Hey, admin, my computer randomly turns off
-message from admin: Hello your computer has virus

@@ -11,8 +11,8 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-//        System.out.println("\n\n\n=========> TASK 1 <=========\n\n\n");
-//        Task1.Main();
+        System.out.println("\n\n\n=========> TASK 1 <=========\n\n\n");
+        Task1.Main();
 //        System.out.println("\n\n\n=========> TASK 2 <=========\n\n\n");
 //        Task2.Main();
 //        System.out.println("\n\n\n=========> TASK 3 <=========\n\n\n");
@@ -21,7 +21,7 @@ public class Main {
 //        Task4.Main();
 //        System.out.println("\n\n\n=========> TASK 5 <=========\n\n\n");
 //        Task5.Main();
-        System.out.println("\n\n\n=========> TASK 6 <=========\n\n\n");
-        Task6.Main();
+//        System.out.println("\n\n\n=========> TASK 6 <=========\n\n\n");
+//        Task6.Main();
     }
 }
