@@ -1,6 +1,10 @@
 package org.example.task5;
 
 
+import org.example.task5.events.ClickEvent;
+import org.example.task5.events.Event;
+import org.example.task5.events.HoverEvent;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
@@ -9,6 +13,8 @@ public class LightElementNode extends LightNode {
     private final String tagName;
     private final List<String> cssClasses = new ArrayList<>();
     private final List<LightNode> children = new ArrayList<>();
+
+    public Event<ClickEvent> onClick = new Event<ClickEvent>();
 
     public LightElementNode(String tagName) {
         this.tagName = tagName;
@@ -54,5 +60,9 @@ public class LightElementNode extends LightNode {
         sb.append("</").append(tagName).append(">");
 
         return sb.toString();
+    }
+
+    void clickEvent(boolean mousePressed, int button, int x, int y) {
+        onClick.publish(new ClickEvent(mousePressed, button, x, y));
     }
 }

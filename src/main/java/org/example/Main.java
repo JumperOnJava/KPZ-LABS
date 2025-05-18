@@ -19,9 +19,9 @@ public class Main {
 //        Task3.Main();
 //        System.out.println("\n\n\n=========> TASK 4 <=========\n\n\n");
 //        Task4.Main();
-//        System.out.println("\n\n\n=========> TASK 5 <=========\n\n\n");
-//        Task5.Main();
-        System.out.println("\n\n\n=========> TASK 6 <=========\n\n\n");
-        Task6.Main();
+        System.out.println("\n\n\n=========> TASK 5 <=========\n\n\n");
+        Task5.Main();
+//        System.out.println("\n\n\n=========> TASK 6 <=========\n\n\n");
+//        Task6.Main();
     }
 }

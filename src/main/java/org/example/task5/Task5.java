@@ -1,22 +1,34 @@
 package org.example.task5;
 
+import org.example.task5.events.ClickEvent;
+import org.example.task5.events.HoverEvent;
+import org.example.task5.events.Subscriber;
+
+import java.util.List;
+
 public class Task5 {
     public static void Main() {
-        LightElementNode ul = new LightElementNode("ul");
-        ul.addClass("my-list");
+        var div = new LightElementNode("div");
+        var text = new LightTextNode("element 1");
 
-        LightElementNode li1 = new LightElementNode("li");
-        li1.addChild(new LightTextNode("element 1"));
+        var subscriber = new Subscriber<ClickEvent>() {
+            @Override
+            public void run(ClickEvent event) {
+                System.out.printf("%s button %s at %d %d\n", List.of("Left", "Right", "Middle").get(event.button()), event.mousePressed() ? "down" : "up", event.x(), event.y());
+            }
+        };
+        div.onClick.subscribe(subscriber);
+        div.onClick.publish(new ClickEvent(true, (int) (Math.random()*3), (int) (Math.random()*100), (int) (Math.random()*100)));
 
-        LightElementNode li2 = new LightElementNode("li");
-        li2.addChild(new LightTextNode("element 2"));
 
-        ul.addChild(li1);
-        ul.addChild(li2);
+        //note: in java you can implement interface with lambda if it has only one method
+        text.onHover.subscribe(event->{
+            if(event.isOverElement()){
+                System.out.printf("Hovered over text at %d %d\n", event.x(), event.y());
+            }
+        });
 
-        System.out.println("=== outerHTML ===");
-        System.out.println(ul.outerHTML());
-        System.out.println("\n=== innerHTML ===");
-        System.out.println(ul.innerHTML());
+        text.onHover.publish(new HoverEvent(true,(int) (Math.random()*100), (int) (Math.random()*100)));
+
     }
 }
