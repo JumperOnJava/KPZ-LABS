@@ -2,27 +2,27 @@
 
 ## Patterns used in code
 
-### 1. Adapter
+### 1. Chain of responsibility
 
-Class `OutpitLogger` adapts `OutputWriter` implementation to output using `Logger` interface. That allows to replace `ConsoleLogger` with `OutputLogger` to get logging to file functionality with reusing existing classes
+`ChainHandler` interface has `handle` method to handle current element and `setNext` method to set next handler if current fails
 
-### 2. Decorator
+### 2. Mediator
 
-Each `GenericHero` subclass has different base stats and implements `Hero` interface. Items modify base stats of character by implementing `modifyXYZ` methods from `Equipment` abstract class that also implements `Hero` interface by wrapping existing `Hero` object and applying modifiers to it
+Moved all logic that accessed other side from `Aircraft` and `Runway` classes to `CommandCentre`. `Aircraft` and `Runway` now have only fields and logic related to themselves and CommandCentre handles interactions between them
 
-### 3. Bridge
+### 3. Observer
 
-`Shape` subclasses take `Renderer` implementation as constructor parameter, and when `Shape.draw` method is called it "Draws" desired shape using `Renderer.render` method implementation
+https://github.com/JumperOnJava/KPZ-LABS/pull/2<br>
+`Event` implements `Publisher` interface and allows to `Subscriber` implementations to subscribe to publisher. When event happens (`Publisher.publish(context)` is called) every subsribers' `run` method is executed.
 
-### 4. Proxy
+### 4. Strategy
 
-`SmartTextReader` implement file opening, reading and closing trough `Reader` interface. `SmartTextChecker` wraps `Reader` implementation and logs all actions and errors. `SmartTextSecurity` also wraps `Reader` implementation to check what user accesses and throws an error when user reads system data
+https://github.com/JumperOnJava/KPZ-LABS/pull/3<br>
+Image resolving is happening trough ImageResolvingStrategy interface and implementation changes based on internet connection: if internet is available `ImageServerStrategy` implementation is used for image resolving in image context. If internet is unavailable then `CacheResolvingStrategy` implementation is used for getting previously cached images from local cache folder
 
-### 5. Composite
+### 5. Memento
 
-`LightNode` class defines `innerHTML` and `outerHTML` abstract methods. `LightTextNode` implements them as String, `LightElementNode` allows to store child `LightNode` objects in tags. When inner/outerHTML method implementation is called it returns recursively
+Before making any changes to `TextDocument` content `TextEditor` backs up its current state (`Snapshot`) to stack. When undo is requested previous state is taken from stack, and restored using `Snapshot.restore` method
 
-### 6. Flyweight
 
-`LightNodeFactory` stores all references to used tags, so when passed node has same content as existing it is replaced by existing reference to save memory
-Note: create book.txt in 
+
