@@ -18,3 +18,6 @@ Added `IFrameNode` that allows to fetch other website data. State defines what c
 
 Added `Visitor` and `Visitable` interfaces. `Visitable` implementation call specific method of `Visitor` implementation. `Visitor` has two implementations: `FancyLoggerVisitor` for logging node tree and `JsonLoggerVisitor` to export node tree to json.
 
+### 5. Command
+
+Added `Command` interface with execute method. This interface has two implementations: `LogCommand` which outputs message to console and `DumpJsonCommand` to save document's current content to specified file. New element `Button` uses `Command` implementation as argument and executes it on click event if user clicked with left mouse button 

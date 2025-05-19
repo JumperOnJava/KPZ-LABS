@@ -1,5 +1,8 @@
 package org.example.task5;
 
+import org.example.task5.button.Button;
+import org.example.task5.button.DumpJsonCommand;
+import org.example.task5.button.LogCommand;
 import org.example.task5.events.ClickEvent;
 import org.example.task5.events.HoverEvent;
 import org.example.task5.events.Subscriber;
@@ -133,6 +136,18 @@ public class Task5 {
         var jsonVisitor = new JsonLoggerVisitor();
         combinedTag.accept(jsonVisitor);
         System.out.println(jsonVisitor.resultJson());
+
+
+
+
+        var debugLogButton = new Button("Test button", new LogCommand("Hello, world!"));
+        var saveButton = new Button("Save document", new DumpJsonCommand(combinedTag, "dump.json"));
+        combinedTag.addChild(debugLogButton);
+        combinedTag.addChild(saveButton);
+
+        debugLogButton.onClick.publish(new ClickEvent(true,0,10,10));
+        saveButton.onClick.publish(new ClickEvent(true,0,10,10));
+
     }
 
     private static boolean internetAvailable() {
@@ -148,4 +163,8 @@ public class Task5 {
             return false;
         }
     }
+
+
+
+
 }
