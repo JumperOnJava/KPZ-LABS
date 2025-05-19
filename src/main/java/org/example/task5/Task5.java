@@ -16,7 +16,7 @@ import java.util.List;
 
 public class Task5 {
     public static void Main() {
-        var div = new LightElementNode("div");
+        var div = new LightParentNode("div");
         var text = new LightTextNode("element 1");
 
         var subscriber = new Subscriber<ClickEvent>() {

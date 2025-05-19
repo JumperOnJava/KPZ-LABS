@@ -1,8 +1,7 @@
 package org.example.task6;
 
-import org.example.task1.ConsoleLogger;
 import org.example.task1.FileOutputWriter;
-import org.example.task5.LightElementNode;
+import org.example.task5.LightParentNode;
 import org.example.task5.LightNode;
 import org.example.task5.LightTextNode;
 
@@ -10,7 +9,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Objects;
-import java.util.function.Function;
 
 public class Task6 {
 
@@ -37,7 +35,7 @@ public class Task6 {
         printUsedMemory("Before reading file");
         var file = Files.readAllLines(Path.of("book.txt"));
         printUsedMemory("After reading file");
-        var rootNode = new LightElementNode("body");
+        var rootNode = new LightParentNode("body");
 
         //repeat 1000 times to memory save to be more visible
         for (int j = 0; j < 100; j++) {
@@ -49,21 +47,21 @@ public class Task6 {
 
                 if (i != 0) {
                     if (line.startsWith(" ")) {
-                        var blockquoteNode = new LightElementNode("blockquote");
+                        var blockquoteNode = new LightParentNode("blockquote");
                         blockquoteNode.addChild(textNode);
                         textNode = blockquoteNode;
                     } else if (line.length() < 20) {
-                        var h2Node = new LightElementNode("h2");
+                        var h2Node = new LightParentNode("h2");
                         h2Node.addChild(textNode);
                         textNode = h2Node;
                     } else {
-                        var pNode = new LightElementNode("p");
+                        var pNode = new LightParentNode("p");
                         pNode.addChild(textNode);
                         textNode = pNode;
                     }
 
                 } else {
-                    var text = new LightElementNode("h1");
+                    var text = new LightParentNode("h1");
                     text.addChild(textNode);
                 }
 
