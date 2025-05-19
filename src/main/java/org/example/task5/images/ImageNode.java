@@ -1,24 +1,32 @@
 package org.example.task5.images;
 
 import org.example.task5.LightNode;
+import org.example.task5.LightParentNode;
+import org.example.task5.LightTaggedNode;
 import org.w3c.dom.Node;
 
-public class ImageNode extends LightNode {
+public class ImageNode extends LightTaggedNode {
     private final String imageAddress;
     private final ImageContext context;
 
     public ImageNode(String imageAddress, ImageContext context) {
+        super("image");
         this.imageAddress = imageAddress;
         this.context = context;
     }
 
     @Override
-    public String outerHTML() {
-        return "<image>\n"+innerHTML()+"\n</image>";
+    protected String finishOpeningTag() {
+        return ">";
     }
 
     @Override
     public String innerHTML() {
-        return context.executeStrategy(imageAddress);
+        return "\n"+context.executeStrategy(imageAddress)+"\n";
+    }
+
+    @Override
+    protected String closingTag() {
+        return "</image>";
     }
 }

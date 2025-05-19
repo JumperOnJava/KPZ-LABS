@@ -52,7 +52,20 @@ public class Task5 {
         System.out.println(image.outerHTML());
 
 
+        var closedTag = new LightTaggedNode("div");
+        closedTag.addClass("generic-border");
+        closedTag.addClass("shadow");
 
+        var openTag = new LightParentNode("div");
+        openTag.addClass("generic-border");
+        openTag.addClass("shadow");
+        openTag.addChild(text);
+        openTag.addChild(div);
+
+        System.out.println("[ClosedTag]");
+        System.out.println(closedTag.outerHTML());
+        System.out.println("[OpenTag]");
+        System.out.println(openTag.outerHTML());
     }
 
     private static boolean internetAvailable() {

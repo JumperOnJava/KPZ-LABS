@@ -34,24 +34,12 @@ public class LightParentNode extends LightTaggedNode {
     }
 
     @Override
-    public String outerHTML() {
-        StringBuilder sb = new StringBuilder();
-
-        sb.append("<").append(tagName);
-
-        if (!cssClasses.isEmpty()) {
-            sb.append(" class=\"");
-            StringJoiner joiner = new StringJoiner(" ");
-            for (String cls : cssClasses) joiner.add(cls);
-            sb.append(joiner).append("\"");
-        }
-
-        sb.append(">");
-        sb.append(innerHTML());
-        sb.append("</").append(tagName).append(">");
-
-        return sb.toString();
+    protected String finishOpeningTag() {
+        return ">";
     }
 
-
+    @Override
+    protected String closingTag() {
+        return "</" + tagName + ">";
+    }
 }

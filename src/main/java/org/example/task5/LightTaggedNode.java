@@ -23,29 +23,49 @@ public class LightTaggedNode extends LightNode {
         cssClasses.add(cssClass);
     }
 
+
+    @Override
+    public String outerHTML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(startOpeningTag());
+        sb.append(classes());
+        sb.append(finishOpeningTag());
+        sb.append(innerHTML());
+        sb.append(closingTag());
+
+        return sb.toString();
+    }
+
     @Override
     public String innerHTML() {
         return "";
     }
 
-    @Override
-    public String outerHTML() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<").append(tagName);
+    protected String finishOpeningTag() {
+        return "/>";
+    }
 
+    protected String startOpeningTag(){
+        return "<" + tagName;
+    }
+
+    protected String classes(){
+        StringBuilder sb = new StringBuilder();
         if (!cssClasses.isEmpty()) {
             sb.append(" class=\"");
             StringJoiner joiner = new StringJoiner(" ");
             cssClasses.forEach(joiner::add);
             sb.append(joiner).append("\"");
         }
-
-        sb.append("/>");
-
         return sb.toString();
+    }
+
+    protected String closingTag(){
+        return "";
     }
 
     void clickEvent(boolean mousePressed, int button, int x, int y) {
         onClick.publish(new ClickEvent(mousePressed, button, x, y));
     }
+
 }
