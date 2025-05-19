@@ -10,8 +10,16 @@ import java.util.StringJoiner;
 
 public class LightTaggedNode extends LightNode {
     protected final String tagName;
+
+    public String getTag() {
+        return tagName;
+    }
+
+    public List<String> getCssClasses() {
+        return cssClasses;
+    }
+
     protected final List<String> cssClasses = new ArrayList<>();
-    protected final List<LightNode> children = new ArrayList<>();
 
     public Event<ClickEvent> onClick = new Event<ClickEvent>();
 

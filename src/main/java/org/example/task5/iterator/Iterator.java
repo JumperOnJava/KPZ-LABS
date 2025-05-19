@@ -1,0 +1,8 @@
+package org.example.task5.iterator;
+
+import java.util.NoSuchElementException;
+
+public interface Iterator<E> {
+    boolean hasNext();
+    E next();
+}

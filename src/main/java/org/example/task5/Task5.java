@@ -7,6 +7,9 @@ import org.example.task5.images.ImageContext;
 import org.example.task5.images.ImageNode;
 import org.example.task5.images.ImageServerStrategy;
 import org.example.task5.images.CacheResolvingStrategy;
+import org.example.task5.iterator.ClassIterator;
+import org.example.task5.iterator.DFSIterator;
+import org.example.task5.iterator.TagIterator;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -56,7 +59,7 @@ public class Task5 {
         closedTag.addClass("generic-border");
         closedTag.addClass("shadow");
 
-        var openTag = new LightParentNode("div");
+        var openTag = new LightParentNode("button");
         openTag.addClass("generic-border");
         openTag.addClass("shadow");
         openTag.addChild(text);
@@ -66,6 +69,38 @@ public class Task5 {
         System.out.println(closedTag.outerHTML());
         System.out.println("[OpenTag]");
         System.out.println(openTag.outerHTML());
+
+        var combinedTag = new LightParentNode("div");
+
+        combinedTag.addChild(openTag);
+        combinedTag.addChild(image);
+        combinedTag.addChild(closedTag);
+        combinedTag.addChild(new ImageNode("fox",imageContext));
+
+        System.out.println();
+        System.out.println();
+
+        var shadowNodesIterator = new ClassIterator(combinedTag,"shadow");
+        while (shadowNodesIterator.hasNext()) {
+            var next = shadowNodesIterator.next();
+            System.out.printf("[Shadow node]\n%s\n[Shadow node end]\n\n",next.outerHTML());
+        }
+
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
+        var imageNodeIterator = new TagIterator(combinedTag,"image");
+        while (imageNodeIterator.hasNext()) {
+            var next = imageNodeIterator.next();
+            System.out.printf("[Image node]\n%s\n[Image node end]\n\n",next.outerHTML());
+        }
+
+        var dfsIterator = new DFSIterator(combinedTag);
+        while (dfsIterator.hasNext()) {
+            var next = dfsIterator.next();
+            System.out.printf("[DFS element]: %s\n",next.outerHTML());
+        }
     }
 
     private static boolean internetAvailable() {

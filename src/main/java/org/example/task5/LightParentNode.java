@@ -9,6 +9,9 @@ import java.util.List;
 import java.util.StringJoiner;
 
 public class LightParentNode extends LightTaggedNode {
+    public List<LightNode> getChildren() {
+        return new ArrayList<>(children);
+    }
     private final List<LightNode> children = new ArrayList<>();
 
 
