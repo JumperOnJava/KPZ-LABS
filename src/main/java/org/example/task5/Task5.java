@@ -3,6 +3,7 @@ package org.example.task5;
 import org.example.task5.events.ClickEvent;
 import org.example.task5.events.HoverEvent;
 import org.example.task5.events.Subscriber;
+import org.example.task5.iframe.IFrameNode;
 import org.example.task5.images.ImageContext;
 import org.example.task5.images.ImageNode;
 import org.example.task5.images.ImageServerStrategy;
@@ -101,6 +102,30 @@ public class Task5 {
             var next = dfsIterator.next();
             System.out.printf("[DFS element]: %s\n",next.outerHTML());
         }
+
+        try {
+
+            var iframe = new IFrameNode(new URL("https://info.cern.ch/"));
+            System.out.printf("[IFrame]: %s\n",iframe.outerHTML());
+            System.out.printf("[Wait two seconds for fetching]\n");
+            Thread.sleep(2000);
+            System.out.printf("[IFrame]: %s\n",iframe.outerHTML());
+
+            var iframeError = new IFrameNode(new URL("https://info.cernerror.ch/"));
+            Thread.sleep(2000);
+            System.out.printf("[IFrame Error]: %s\n",iframeError.outerHTML());
+            //this method only used to set new correct url to demonstrate reloading functionality
+            iframeError.demo_setUrl(new URL("https://info.cern.ch/"));
+            iframeError.reload();
+            System.out.printf("[IFrame reloading]: %s\n",iframeError.outerHTML());
+            Thread.sleep(2000);
+            System.out.printf("[IFrame reloaded]: %s\n",iframeError.outerHTML());
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
     private static boolean internetAvailable() {

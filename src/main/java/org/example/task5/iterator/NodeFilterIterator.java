@@ -1,6 +1,7 @@
 package org.example.task5.iterator;
 
 import org.example.task5.LightNode;
+import org.example.task5.SimpleNode;
 
 import java.util.ArrayList;
 import java.util.List;

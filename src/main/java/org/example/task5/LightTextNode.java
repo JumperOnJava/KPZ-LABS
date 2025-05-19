@@ -1,6 +1,6 @@
 package org.example.task5;
 
-public class LightTextNode extends LightNode {
+public class LightTextNode extends SimpleNode {
     private final String text;
 
     public LightTextNode(String text) {

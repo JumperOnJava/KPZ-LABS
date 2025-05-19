@@ -1,9 +1,6 @@
 package org.example.task5.images;
 
-import org.example.task5.LightNode;
-import org.example.task5.LightParentNode;
 import org.example.task5.LightTaggedNode;
-import org.w3c.dom.Node;
 
 public class ImageNode extends LightTaggedNode {
     private final String imageAddress;

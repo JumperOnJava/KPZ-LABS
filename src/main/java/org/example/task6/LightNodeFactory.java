@@ -1,12 +1,13 @@
 package org.example.task6;
 
 import org.example.task5.LightNode;
+import org.example.task5.SimpleNode;
 import org.example.task5.LightTextNode;
 
 import java.util.HashMap;
 
 public class LightNodeFactory {
-    HashMap<String,LightNode> nodes;
+    HashMap<String, LightNode> nodes;
     public LightNodeFactory() {
         nodes = new HashMap<>();
     }
@@ -20,7 +21,7 @@ public class LightNodeFactory {
 //        }
 //    }
 
-    public LightNode createLightNode(LightNode originalNode) {
+    public LightNode createLightNode(SimpleNode originalNode) {
         var key = originalNode.outerHTML();
         if (nodes.containsKey(key)) {
             return nodes.get(key);

@@ -1,8 +1,9 @@
 package org.example.task6;
 
 import org.example.task1.FileOutputWriter;
-import org.example.task5.LightParentNode;
 import org.example.task5.LightNode;
+import org.example.task5.LightParentNode;
+import org.example.task5.SimpleNode;
 import org.example.task5.LightTextNode;
 
 import java.io.IOException;
@@ -16,7 +17,7 @@ public class Task6 {
         new FileOutputWriter("parseCached.txt").write(parseFile(new LightNodeFactory()));
         new FileOutputWriter("parseUncached.txt").write(parseFile(new LightNodeFactory(){
             @Override
-            public LightNode createLightNode(LightNode originalNode) {
+            public LightNode createLightNode(SimpleNode originalNode) {
                 return originalNode;
             }
             @Override
@@ -42,7 +43,7 @@ public class Task6 {
 
             for (int i = 0; i < file.size(); i++) {
                 var line = file.get(i);
-                LightNode textNode = new LightTextNode(line);
+                SimpleNode textNode = new LightTextNode(line);
 
 
                 if (i != 0) {

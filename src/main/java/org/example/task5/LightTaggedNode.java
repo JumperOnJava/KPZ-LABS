@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.StringJoiner;
 
-public class LightTaggedNode extends LightNode {
+public class LightTaggedNode extends SimpleNode {
     protected final String tagName;
 
     public String getTag() {
@@ -36,6 +36,7 @@ public class LightTaggedNode extends LightNode {
     public String outerHTML() {
         StringBuilder sb = new StringBuilder();
         sb.append(startOpeningTag());
+        sb.append(properties());
         sb.append(classes());
         sb.append(finishOpeningTag());
         sb.append(innerHTML());
@@ -46,6 +47,10 @@ public class LightTaggedNode extends LightNode {
 
     @Override
     public String innerHTML() {
+        return "";
+    }
+
+    protected String properties(){
         return "";
     }
 

@@ -3,9 +3,6 @@ package org.example.task5.iterator;
 import org.example.task5.LightNode;
 import org.example.task5.LightTaggedNode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class TagIterator extends NodeFilterIterator<String> {
 
     public TagIterator(LightNode node, String tag) {

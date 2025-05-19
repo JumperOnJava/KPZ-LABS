@@ -1,12 +1,8 @@
 package org.example.task5;
 
 
-import org.example.task5.events.ClickEvent;
-import org.example.task5.events.Event;
-
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringJoiner;
 
 public class LightParentNode extends LightTaggedNode {
     public List<LightNode> getChildren() {

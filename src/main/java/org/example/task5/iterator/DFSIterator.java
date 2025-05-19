@@ -1,7 +1,6 @@
 package org.example.task5.iterator;
 
 import org.example.task5.LightNode;
-import org.w3c.dom.Node;
 
 import java.util.Stack;
 
