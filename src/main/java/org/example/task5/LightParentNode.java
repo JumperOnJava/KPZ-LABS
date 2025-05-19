@@ -1,6 +1,8 @@
 package org.example.task5;
 
 
+import org.example.task5.visitor.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,5 +42,10 @@ public class LightParentNode extends LightTaggedNode {
     @Override
     protected String closingTag() {
         return "</" + tagName + ">";
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitParentNode(this);
     }
 }

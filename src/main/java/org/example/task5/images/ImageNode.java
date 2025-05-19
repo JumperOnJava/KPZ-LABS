@@ -1,6 +1,7 @@
 package org.example.task5.images;
 
 import org.example.task5.LightTaggedNode;
+import org.example.task5.visitor.Visitor;
 
 public class ImageNode extends LightTaggedNode {
     private final String imageAddress;
@@ -25,5 +26,14 @@ public class ImageNode extends LightTaggedNode {
     @Override
     protected String closingTag() {
         return "</image>";
+    }
+
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitImageNode(this);
+    }
+
+    public String getImageAddress() {
+        return imageAddress;
     }
 }

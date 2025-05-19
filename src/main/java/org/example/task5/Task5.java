@@ -11,6 +11,8 @@ import org.example.task5.images.CacheResolvingStrategy;
 import org.example.task5.iterator.ClassIterator;
 import org.example.task5.iterator.DFSIterator;
 import org.example.task5.iterator.TagIterator;
+import org.example.task5.visitor.FancyLoggerVisitor;
+import org.example.task5.visitor.JsonLoggerVisitor;
 
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -103,9 +105,10 @@ public class Task5 {
             System.out.printf("[DFS element]: %s\n",next.outerHTML());
         }
 
-        try {
 
+        try {
             var iframe = new IFrameNode(new URL("https://info.cern.ch/"));
+            combinedTag.addChild(iframe);
             System.out.printf("[IFrame]: %s\n",iframe.outerHTML());
             System.out.printf("[Wait two seconds for fetching]\n");
             Thread.sleep(2000);
@@ -126,6 +129,10 @@ public class Task5 {
         }
 
 
+        combinedTag.accept(new FancyLoggerVisitor());
+        var jsonVisitor = new JsonLoggerVisitor();
+        combinedTag.accept(jsonVisitor);
+        System.out.println(jsonVisitor.resultJson());
     }
 
     private static boolean internetAvailable() {

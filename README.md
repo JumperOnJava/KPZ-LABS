@@ -13,3 +13,8 @@ Added `Iterator<T>` interface and its implementations: `DFSIterator` - Depth fir
 ### 3. State
 
 Added `IFrameNode` that allows to fetch other website data. State defines what content node has. IFrameNode has 3 possible states: `DownloadingState` - to show to user that content is downloading, `FetchedState` - to show content and `ErrorState` - that implement `State` interface and can modify `IFrameNode`'s state no new one. `State` interface extends LightNode interface adding `setContext(IFrameNode)` method and `reload()` to fetch new data/ reload in case of an error
+
+### 4. Visitor
+
+Added `Visitor` and `Visitable` interfaces. `Visitable` implementation call specific method of `Visitor` implementation. `Visitor` has two implementations: `FancyLoggerVisitor` for logging node tree and `JsonLoggerVisitor` to export node tree to json.
+

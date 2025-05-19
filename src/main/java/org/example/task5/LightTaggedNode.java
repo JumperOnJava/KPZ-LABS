@@ -3,6 +3,7 @@ package org.example.task5;
 
 import org.example.task5.events.ClickEvent;
 import org.example.task5.events.Event;
+import org.example.task5.visitor.Visitor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -81,4 +82,8 @@ public class LightTaggedNode extends SimpleNode {
         onClick.publish(new ClickEvent(mousePressed, button, x, y));
     }
 
+    @Override
+    public void accept(Visitor visitor) {
+        visitor.visitTaggedNode(this);
+    }
 }

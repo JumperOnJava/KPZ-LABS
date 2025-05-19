@@ -1,6 +1,7 @@
 package org.example.task5.iframe;
 
 import org.example.task5.LightNode;
+import org.example.task5.visitor.Visitor;
 import org.example.task5.iframe.states.DownloadingState;
 import org.example.task5.iframe.states.State;
 
@@ -57,9 +58,5 @@ public class IFrameNode implements LightNode {
     public int getChildCount() {
         return currentState.getChildCount();
     }
-
-
-
-
 }
 
